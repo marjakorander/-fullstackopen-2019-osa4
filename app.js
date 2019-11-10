@@ -9,7 +9,7 @@ const mongoose = require('mongoose')
 
 console.log('connecting to', config.MONGODB_URI)
 
-mongoose.connect(config.MONGODB_URI, {useNewUrlParser: true})
+mongoose.connect(config.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true })
     .then(() => {
         console.log('connected to MongoDB')
     })
@@ -18,7 +18,7 @@ mongoose.connect(config.MONGODB_URI, {useNewUrlParser: true})
     })    
 
 app.use(cors())
-app.use(express.static('build'))
+// app.use(express.static('build'))
 app.use(bodyParser.json())
 app.use(middleware.requestLogger)
 
