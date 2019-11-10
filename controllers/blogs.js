@@ -1,6 +1,8 @@
 const blogiRouter = require('express').Router()
 const Blogi = require('../models/blog')
 
+//4.13 blogilistan laajennus, step1
+
 blogiRouter.get('/', async (request, response) => {
   const blogs = await Blogi.find({})
   if (blogs) {
@@ -25,6 +27,15 @@ blogiRouter.post('/', async (request, response, next) => {
   } catch(error) {
     next(error)
   }  
+})
+
+blogiRouter.delete('/:id', async (request, response, next) => {
+  try {
+    await Blogi.findByIdAndRemove(request.params.id)
+    response.status(204).end()
+  } catch (exception) {
+    next(exception)
+  }
 })
 
 module.exports = blogiRouter
