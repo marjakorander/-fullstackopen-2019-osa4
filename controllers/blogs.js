@@ -1,8 +1,6 @@
 const blogiRouter = require('express').Router()
 const Blogi = require('../models/blog')
 
-//4.13 blogilistan laajennus, step1
-
 blogiRouter.get('/', async (request, response) => {
   const blogs = await Blogi.find({})
   if (blogs) {
